@@ -38,15 +38,20 @@ jobs:
         echo "Login finalizado"
         echo "Versión: $NEW_VERSION !!!!!!!!!!!!!!!!!!!!!!!!!"
 
-    # - name: Build the Docker image
-    #   run: |
-    #     docker build -t paucast/docker-graphql:0.0.3 .
-    #     docker build -t paucast/docker-graphql:latest .
+    - name: Build the Docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
 
-    # - name: Push the Docker image
-    #   run: |
-    #     docker push paucast/docker-graphql:0.0.3
-    #     docker push paucast/docker-graphql:latest
+      run: |
+        docker build -t paucast/docker-graphql:$NEW_VERSION .
+        docker build -t paucast/docker-graphql:latest .
+
+    - name: Push the Docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push paucast/docker-graphql:$NEW_VERSION
+        docker push paucast/docker-graphql:latest
 
 
     # - name: Build the Docker image
