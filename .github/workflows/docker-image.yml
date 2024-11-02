@@ -29,11 +29,13 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build -t paucast/docker-graphql:0.0.2 .
+        docker build -t paucast/docker-graphql:0.0.3 .
+        docker build -t paucast/docker-graphql:latest .
 
     - name: Push the Docker image
       run: |
-        docker push paucast/docker-graphql:0.0.2
+        docker push paucast/docker-graphql:0.0.3
+        docker push paucast/docker-graphql:latest
 
 
     # - name: Build the Docker image
