@@ -27,6 +27,14 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Login finalizado"
 
+    - name: Build the Docker image
+      run: |
+        docker build -t paucast/docker-graphql:0.0.2 .
+
+    - name: Push the Docker image
+      run: |
+        docker push paucast/docker-graphql:0.0.2 .
+
 
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
